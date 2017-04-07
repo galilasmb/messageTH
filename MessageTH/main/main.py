@@ -4,12 +4,12 @@ import re
 from errors.nameError import NameE
 from errors.syntaxError import SyntaxE
 from errors.systemError import SystemE
+from errors.valueError import ValueE
 
 '''
 from errors.attributeError import AttributeE
 from errors.indentationError import IndentationE
 '''
-
 
 class Main(object):
     type = ""
@@ -26,7 +26,8 @@ class Main(object):
     def chainResponsability(self):   
               
         ''' Cadeia de Busca '''
-        chain = [SyntaxE(self.msg).getErros(), SystemE(self.msg).getErros(), NameE(self.msg).getErros()]
+        chain = [SyntaxE(self.msg).getErros(), SystemE(self.msg).getErros(), NameE(self.msg).getErros(),
+                 ValueE(self.msg).getErros()]
               
         foundType = False #Se encontrar a classe do tipo
         foundMsg = False #Se encontrar a mensagem de erro
@@ -43,6 +44,7 @@ class Main(object):
             if self.type in i:
                 listError = i[self.type]
                 foundType = True
+                break
                 #continue #encerra a busca pela cadeira
                 
         ''' Se encontrou o tipo do erro da entrada
@@ -62,6 +64,7 @@ class Main(object):
                         print self.code,
                         print "Descrição: "+l[i]
                         foundMsg = True
+                        break
                         #continue#encerra a busca pela cadeira
             if not foundMsg: 
                 print "Erro não encontrado!"
@@ -96,7 +99,7 @@ else:
         list_new = []
         print
         
-        ''' Separando a o tipo do erro e sua mensagem '''
+        ''' Separando o tipo do erro e sua mensagem '''
         error = list_erros[::-1][0]
         classError = error.split(":")
         list_new.append(classError[0])
