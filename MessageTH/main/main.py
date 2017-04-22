@@ -5,6 +5,7 @@ from errors.nameError import NameE
 from errors.syntaxError import SyntaxE
 from errors.systemError import SystemE
 from errors.valueError import ValueE
+from errors.typeError import TypeE
 
 '''
 from errors.attributeError import AttributeE
@@ -27,7 +28,7 @@ class Main(object):
               
         ''' Cadeia de Busca '''
         chain = [SyntaxE(self.msg).getErros(), SystemE(self.msg).getErros(), NameE(self.msg).getErros(),
-                 ValueE(self.msg).getErros()]
+                 ValueE(self.msg).getErros(), TypeE(self.msg).getErros()]
               
         foundType = False #Se encontrar a classe do tipo
         foundMsg = False #Se encontrar a mensagem de erro
