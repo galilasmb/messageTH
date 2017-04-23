@@ -1,13 +1,5 @@
 
-Original exception was:
 Traceback (most recent call last):
-  File "/3.py", line 3, in <module>
-    lista = lista + str(input())
-TypeError: can only concatenate list (not "str") to list
-
-
-Original exception was:
-Traceback (most recent call last):
-  File "/c3.py", line 15, in <module>
-    Fj = Fj + fig
-TypeError: can only concatenate list (not "int") to list
+  File "/Formatando.py", line 11, in <module>
+    if i.startswith(x):
+TypeError: startswith first arg must be str, unicode, or tuple, not list
