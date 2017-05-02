@@ -4,29 +4,34 @@ class UnicodeDecodeE(object):
 
     msg = ""
     id = "UnicodeDecodeError"
-    erro1 = {}
-    erro2 = {}
-
+    decodeByte = {}
+    
     def __init__(self, msg):
         self.msg = msg
-        self.erro1 = {"erro att 1":self.func1()}
-        self.erro2 = {"erro att 2":self.metodo2()}
+        self.decodeByte = {"codec can't decode byte":self.decodeByteFunc()}
+
+        '''    
+        self. = {"":self.()}
+        '''
 
     
     '''    Funções    '''
         
-    def func1(self):
-        return "erro 1: "+ self.msg
+    def decodeByteFunc(self):
+        try:
+            return """Não foi possível decodificar o código '"""+self.msg.split("byte")[1].split("in")[0]+"""', pois está utilizando uma outra decodificação, verique qual, o mais comum é o utf8 ou latin1."""
+        except:
+            return ""
 
+    '''
+    def (self):
+        return """ """
+    '''
 
-    def func2(self):
-        return "erro 2"
-    
 
 
     '''    Criação do dicionário    '''
     
     def getErros(self):
-        return {self.id:[self.erro1, self.erro2]}
+        return {self.id:[self.decodeByte]}
 
-    

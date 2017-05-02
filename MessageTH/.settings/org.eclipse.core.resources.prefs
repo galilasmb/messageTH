@@ -20,4 +20,5 @@ encoding//errors/unicodeDecodeError.py=utf-8
 encoding//errors/unicodeEncodeError.py=utf-8
 encoding//errors/valueError.py=utf-8
 encoding//errors/zeroDivisionError.py=utf-8
+encoding//file/baseErros.txt=UTF-8
 encoding//main/main.py=utf-8

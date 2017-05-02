@@ -4,29 +4,33 @@ class KeyE(object):
 
     msg = ""
     id = "KeyError"
-    erro1 = {}
-    erro2 = {}
+    keyError = {}
 
     def __init__(self, msg):
         self.msg = msg
-        self.erro1 = {"erro att 1":self.func1()}
-        self.erro2 = {"erro att 2":self.metodo2()}
+        self.keyError = {self.msg:self.keyErrorFunc()}
+
+        '''    
+        self. = {"":self.()}
+        '''
 
     
     '''    Funções    '''
         
-    def func1(self):
-        return "erro 1: "+ self.msg
+    def keyErrorFunc(self):
+        return """A chave digitada não é válida, verifique seu tipo ou seu uso:"""+self.msg
 
 
-    def func2(self):
-        return "erro 2"
-    
+    '''
+    def (self):
+        return """ """
+
+    '''
 
 
     '''    Criação do dicionário    '''
     
     def getErros(self):
-        return {self.id:[self.erro1, self.erro2]}
+        return {self.id:[self.keyError]}
 
     

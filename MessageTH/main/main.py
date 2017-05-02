@@ -6,6 +6,22 @@ from errors.syntaxError import SyntaxE
 from errors.systemError import SystemE
 from errors.valueError import ValueE
 from errors.typeError import TypeE
+from errors.EOFError import EOFE
+from errors.indentationError import IndentationE
+from errors.indexError import IndexE
+from errors.attributeError import AttributeE
+from errors.keyError import KeyE
+from errors.unboundLocalError import UnboundLocalE
+from errors.fileNotFoundError import FileNotFoundE
+from errors.zeroDivisionError import ZeroDivisionE
+from errors.tabError import TabE
+from errors.importError import ImportE
+from errors.permissionError import PermissionE
+from errors.overflowError import OverflowE
+from errors.unicodeDecodeError import UnicodeDecodeE
+from errors.calendarIllegalMonthError import IllegalMonthE
+from errors.unicodeEncodeError import UnicodeEncodeE
+from errors.IOError import IOE
 
 '''
 from errors.attributeError import AttributeE
@@ -28,7 +44,12 @@ class Main(object):
               
         ''' Cadeia de Busca '''
         chain = [SyntaxE(self.msg).getErros(), SystemE(self.msg).getErros(), NameE(self.msg).getErros(),
-                 ValueE(self.msg).getErros(), TypeE(self.msg).getErros()]
+                 ValueE(self.msg).getErros(), TypeE(self.msg).getErros(), EOFE(self.msg).getErros(),
+                 IndentationE(self.msg).getErros(), IndexE(self.msg).getErros(), AttributeE(self.msg).getErros(),
+                 KeyE(self.msg).getErros(), UnboundLocalE(self.msg).getErros(), FileNotFoundE(self.msg).getErros(),
+                 ZeroDivisionE(self.msg).getErros(), TabE(self.msg).getErros(), ImportE(self.msg).getErros(),
+                 PermissionE(self.msg).getErros(), OverflowE(self.msg).getErros(), UnicodeDecodeE(self.msg).getErros(),
+                 IllegalMonthE(self.msg).getErros(), UnicodeEncodeE(self.msg).getErros(), IOE(self.msg).getErros()]
               
         foundType = False #Se encontrar a classe do tipo
         foundMsg = False #Se encontrar a mensagem de erro
@@ -89,7 +110,7 @@ matriz_errors = []
 linha = []
 for i in list_begin:
     linha.append(i)
-    if "Error" in i and not "sys.excepthook" in i:
+    if "Error" in i and not "sys.excepthook" in i and not "raise" in i:
         matriz_errors.append(linha)
         linha = []
         
@@ -98,7 +119,6 @@ if not matriz_errors:
 else:
     for list_erros in matriz_errors:
         list_new = []
-        print
         
         ''' Separando o tipo do erro e sua mensagem '''
         error = list_erros[::-1][0]
@@ -112,7 +132,7 @@ else:
         cod = []
         try:
             for i in list_erros[::-1]:
-                if "File" not in i and not entrou:
+                if "File \"" not in i and not entrou:
                     cod.append(i)
                 else:
                     entrou = True
@@ -121,30 +141,34 @@ else:
         except:
             cod = ""
         
+        
         ''' Pegando a linha que ocorreu o erro'''
         linha = ""
         for f in list_erros:
             try:
-                if "File" in f:            
+                if "File \"" in f:            
                     linha = f            
             except:
                 continue
+
         ''' Identificando o número da linha que ocorreu o erro '''
         numberLine = ""
-        l = linha.split(",")[1]
-        if "line" in l:
-            for char in l:
-                if char.isdigit():
-                    numberLine+=char
-        else:
-            numberLine = "X"
-        ''' Executando a chamada da cadeia com o tipo do erro e sua mensagem'''
-        
-        
-        '''print numberLine
-        print str_code
-        print list_new[0]+":"+list_new[1]'''
-        iniciar = Main(list_new[0], list_new[1], numberLine, str_code)
-        
-        iniciar.chainResponsability()
+        try:
+            l = linha.split(",")[1]
+            if "line" in l:
+                for char in l:
+                    if char.isdigit():
+                        numberLine+=char
+            else:
+                numberLine = "X"
+            ''' Executando a chamada da cadeia com o tipo do erro e sua mensagem'''
+            
+            '''print numberLine
+            print str_code
+            print list_new[0]+":"+list_new[1]'''
+            iniciar = Main(list_new[0], list_new[1], numberLine, str_code)
+            
+            iniciar.chainResponsability()
+        except:
+            print "Mensagem de erro fora do padrão!"
         

@@ -4,29 +4,38 @@ class IndexE(object):
 
     msg = ""
     id = "IndexError"
-    erro1 = {}
-    erro2 = {}
-
+    indexRange = {}
+    popEmptyList = {}
+    
     def __init__(self, msg):
         self.msg = msg
-        self.erro1 = {"erro att 1":self.func1()}
-        self.erro2 = {"erro att 2":self.metodo2()}
+        self.indexRange = {"index out of range":self.indexRangeFunc()}
+        self.popEmptyList = {"pop from empty list":self.popEmptyListFunc()}
 
+        '''    
+        self. = {"":self.()}
+        '''
     
     '''    Funções    '''
         
-    def func1(self):
-        return "erro 1: "+ self.msg
+    def indexRangeFunc(self):
+        return """O índice da lista está fora do intervalo, verique o índice de acesso e seu valor."""
 
 
-    def func2(self):
-        return "erro 2"
-    
+    def popEmptyListFunc(self):
+        return """A lista está vazia, por isso não é possível utilizar o comando pop(). Só é possível utilizar se a lista tiver tamanho maior ou igual a um."""
+
+
+    '''
+    def (self):
+        return """ """
+
+    '''
 
 
     '''    Criação do dicionário    '''
     
     def getErros(self):
-        return {self.id:[self.erro1, self.erro2]}
+        return {self.id:[self.indexRange, self.popEmptyList]}
 
     

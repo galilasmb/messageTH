@@ -29,6 +29,8 @@ class ValueE(object):
     encounteredFormat = {}
     dictionaryElement = {}
     invalidFormat = {}
+    formatPrecision = {}
+    attributeFormatString = {}
     
     def __init__(self, msg):
         self.msg = msg
@@ -57,7 +59,9 @@ class ValueE(object):
         self.encounteredFormat = {"encountered in format string":self.encounteredFormatFunc()}
         self.dictionaryElement = {"dictionary update sequence element":self.dictionaryElementFunc()}
         self.invalidFormat = {"Invalid format specifier":self.invalidFormatFunc()}
-
+        self.formatPrecision = {"Format specifier missing precision":self.formatPrecisionFunc()}
+        self.attributeFormatString = {"attribute in format string":self.attributeFormatStringFunc()}
+        
         #self.var = {"chave":self.metodo()}
 
     
@@ -184,6 +188,14 @@ class ValueE(object):
         return """O formato especificado é inválido, verifique os parâmetros do comando format()."""
 
 
+    def formatPrecisionFunc(self):
+        return """A especificação do comando 'format' está faltando o parâmetro precisão. Insira a precisão de formatação para corrigir o erro."""
+    
+    
+    def attributeFormatStringFunc(self):
+        return """Foi passado um atributo vazio para formatação de uma string. Verifique os atributos do comando 'format'."""
+
+
     '''
     def func(self):
         return
@@ -198,5 +210,6 @@ class ValueE(object):
                          self.tooManyValue, self.negativePower, self.unsupportedFormat, self.unknownFormat,
                          self.precisionNot, self.invalidConversion, self.rangeMust, self.unmatchedFormat,
                          self.complexString, self.lacksBlank, self.factorialNegative, self.attemptSize,
-                         self.encounteredFormat, self.dictionaryElement, self.invalidFormat]}
+                         self.encounteredFormat, self.dictionaryElement, self.invalidFormat, self.formatPrecision,
+                         self.attributeFormatString]}
 

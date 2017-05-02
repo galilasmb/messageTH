@@ -4,28 +4,37 @@ class UnboundLocalE(object):
 
     msg = ""
     id = "UnboundLocalError"
-    erro1 = {}
-    erro2 = {}
+    referencedBefore = {}
 
     def __init__(self, msg):
         self.msg = msg
-        self.erro1 = {"erro att 1":self.func1()}
-        self.erro2 = {"erro att 2":self.metodo2()}
+        self.referencedBefore = {"referenced before assignment":self.referencedBeforeFunc()}
+
+        '''    
+        self. = {"":self.()}
+        '''
 
     
     '''    Funções    '''
         
-    def func1(self):
-        return "erro 1: "+ self.msg
+    def referencedBeforeFunc(self):
+        try:
+            val = self.msg.split("'")
+            return """Não é possível fazer referência ou uso de uma variável antes dela ser declarada ou atribuída. Verifique o uso da variável '"""+val[1]+"""' ou veja se não é necessário o uso de uma variável global."""
+        except:
+            return ""
+
+    '''
+    def (self):
+        return """ """
+
+    '''
 
 
-    def func2(self):
-        return "erro 2"
-    
 
     '''    Criação do dicionário    '''
     
     def getErros(self):
-        return {self.id:[self.erro1, self.erro2]}
+        return {self.id:[self.referencedBefore]}
 
     

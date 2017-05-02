@@ -4,29 +4,38 @@ class FileNotFoundE(object):
 
     msg = ""
     id = "FileNotFoundError"
-    erro1 = {}
-    erro2 = {}
+    noFileDirectory = {}
 
     def __init__(self, msg):
         self.msg = msg
-        self.erro1 = {"erro att 1":self.func1()}
-        self.erro2 = {"erro att 2":self.metodo2()}
+        self.noFileDirectory = {"No such file or directory":self.noFileDirectoryFunc()}
+
+        '''    
+        self. = {"":self.()}
+        '''
 
     
     '''    Funções    '''
         
-    def func1(self):
-        return "erro 1: "+ self.msg
+    def noFileDirectoryFunc(self):
+        try:
+            return """Não foi possivel abrir o diretório no caminho: """+self.msg.split(":")[1].rstrip()+""", verifique-o. Tente colocar duas barras ou modificar o caminho, por exemplo: caminho = "..\\\Pasta\\\\"""+self.msg.split("'")[1].replace("/","")+"""."""
+        except:
+            return ""
 
 
-    def func2(self):
-        return "erro 2"
-    
+    '''
+    def (self):
+        return """ """
+
+    '''
+
 
 
     '''    Criação do dicionário    '''
     
     def getErros(self):
-        return {self.id:[self.erro1, self.erro2]}
+        return {self.id:[self.noFileDirectory]}
+
 
     

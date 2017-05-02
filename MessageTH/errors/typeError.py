@@ -66,6 +66,8 @@ class TypeE(object):
     doesTakeKeyword = {}
     gotUnexpectedKeyword = {}
     startswithFirstArg = {}
+    mustStrNotInt = {}
+    requiredArguments = {}
 
     def __init__(self, msg):
         self.msg = msg
@@ -80,7 +82,7 @@ class TypeE(object):
         self.objectCannotInteger = {"object cannot be interpreted as an integer":self.objectCannotIntegerFunc()}
         self.argumentMustNumber = {"argument must be a string or a number":self.argumentMustNumberFunc()}
         self.objectToImplicitly = {"object to str implicitly":self.objectToImplicitlyFunc()}
-        self.listMustIntegers = {"list indices must be integers":self.listMustIntegersFunc()}
+        self.listMustIntegers = {"indices must be integers":self.listMustIntegersFunc()}
         self.hasNoLen = {"has no len()":self.hasNoLenFunc()}
         self.aBytesObjectNumber = {"a bytes-like object or a number":self.aBytesObjectNumberFunc()}
         self.cannotConcatenate = {"cannot concatenate":self.cannotConcatenateFunc()}
@@ -131,6 +133,8 @@ class TypeE(object):
         self.doesTakeKeyword = {"does not take keyword arguments":self.doesTakeKeywordFunc()}
         self.gotUnexpectedKeyword = {"got an unexpected keyword":self.gotUnexpectedKeywordFunc()}
         self.startswithFirstArg = {"startswith first arg must be":self.startswithFirstArgFunc()}
+        self.mustStrNotInt = {"must be str, not int":self.mustStrNotIntFunc()}
+        self.requiredArguments = {"required positional arguments":self.requiredArgumentsFunc()}
         
         '''
         self. = {"":self.()}
@@ -545,7 +549,6 @@ class TypeE(object):
         try:
             func = self.msg.split(" ")[1]
             typ = self.msg.split(", got")[1].rstrip()
-            print typ
             return """A função """+func+""" esperava um objeto do tipo inteiro e foi obtido um do tipo"""+typ
         except:
             return ""
@@ -587,6 +590,21 @@ class TypeE(object):
             return ""
 
 
+    def mustStrNotIntFunc(self):
+        return """O parâmetro deve ser do tipo string, não do tipo inteiro. Modifique os tipos dos parâmetros."""    
+
+    
+    def requiredArgumentsFunc(self):
+        try:
+            spt = self.msg.split(" ")
+            func = spt[1]
+            args = spt[3]
+            typ1 = spt[7]
+            typ2 = spt[9].rstrip()
+            return """A função """+func+""" está faltando """+args+(" argumentos" if int(args)>1 else " argumento")+""", do tipo: """+typ1+""" e """+typ2+"""."""
+        except:
+            return ""
+    
     '''
     
     def (self):
@@ -608,6 +626,7 @@ class TypeE(object):
                          self.expectedAtLeast, self.inString, self.mustBeUnicode, self.mustTwoArguments, self.objectArgumentAfter,
                          self.doesntDefineRound, self.mapIteration, self.keywordArguments, self.requiredArgumentNumber, self.doesNotIndexing,
                          self.expectedOneArgument, self.canJoinIterable, self.mustBeStr, self.mustBeNoneStr, self.integerRequired,
-                         self.integerStartExpected, self.wantsInt, self.objectDontDeletion, self.doesTakeKeyword, self.gotUnexpectedKeyword, self.startswithFirstArg]}
+                         self.integerStartExpected, self.wantsInt, self.objectDontDeletion, self.doesTakeKeyword, self.gotUnexpectedKeyword, self.startswithFirstArg,
+                         self.mustStrNotInt, self.requiredArguments]}
 
     

@@ -4,29 +4,34 @@ class IllegalMonthE(object):
 
     msg = ""
     id = "calendar.IllegalMonthError"
-    erro1 = {}
-    erro2 = {}
+    badMonthNumber = {}
 
     def __init__(self, msg):
         self.msg = msg
-        self.erro1 = {"erro att 1":self.func1()}
-        self.erro2 = {"erro att 2":self.metodo2()}
+        self.badMonthNumber = {"bad month number":self.badMonthNumberFunc()}
+
+        '''    
+        self. = {"":self.()}
+        '''
 
     
     '''    Funções    '''
         
-    def func1(self):
-        return "erro 1: "+ self.msg
+    def badMonthNumberFunc(self):
+        return """O formato do mês está errado, deve ser um número entre 1-12, representando os meses do ano."""
 
 
-    def func2(self):
-        return "erro 2"
-    
+    '''
+    def (self):
+        return """ """
+    '''
+
 
 
     '''    Criação do dicionário    '''
     
     def getErros(self):
-        return {self.id:[self.erro1, self.erro2]}
+        return {self.id:[self.badMonthNumber]}
+
 
     

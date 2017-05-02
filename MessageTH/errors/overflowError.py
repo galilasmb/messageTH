@@ -4,29 +4,46 @@ class OverflowE(object):
 
     msg = ""
     id = "OverflowError"
-    erro1 = {}
-    erro2 = {}
+    largeConvert = {}
+    resultOutRange = {}
+    divisionLarge = {}
 
     def __init__(self, msg):
         self.msg = msg
-        self.erro1 = {"erro att 1":self.func1()}
-        self.erro2 = {"erro att 2":self.metodo2()}
+        self.largeConvert = {"too large to convert to":self.largeConvertFunc()}
+        self.resultOutRange = {"Numerical result out of range":self.resultOutRangeFunc()}
+        self.divisionLarge = {"division result too large for":self.divisionLargeFunc()}
+        
+        '''    
+        self. = {"":self.()}
+        '''
 
     
     '''    Funções    '''
         
-    def func1(self):
-        return "erro 1: "+ self.msg
+    def largeConvertFunc(self):
+        return """O inteiro é muito grande para ser convertido para float, verifique o tamanho do inteiro antes de tentar converter ou tente usar a biblioteca Decimal()."""
 
 
-    def func2(self):
-        return "erro 2"
-    
+    def resultOutRangeFunc(self):
+        return """O resultado numérico está fora de seu intervalo permitido, verifique seu intervalo."""
+
+
+    def divisionLargeFunc(self):
+        return """O resultado da divisão inteira é muito grande para ser atribuído a um número ponto flutuante, verifique seu tamanho."""
+
+
+    '''
+    def (self):
+        return """ """
+    '''
+
 
 
     '''    Criação do dicionário    '''
     
     def getErros(self):
-        return {self.id:[self.erro1, self.erro2]}
+        return {self.id:[self.largeConvert, self.resultOutRange, self.divisionLarge]}
+
 
     

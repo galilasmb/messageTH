@@ -4,29 +4,53 @@ class AttributeE(object):
 
     msg = ""
     id = "AttributeError"
-    erro1 = {}
-    erro2 = {}
+    objectNotAttribute = {}
+    typeObject = {}
 
     def __init__(self, msg):
         self.msg = msg
-        self.erro1 = {"erro att 1":self.func1()}
-        self.erro2 = {"erro att 2":self.metodo2()}
+        self.objectNotAttribute = {"object has no attribute":self.objectNotAttributeFunc()}
+        self.typeObject = {"type object":self.typeObjectFunc()}
+
+        '''    
+        self. = {"":self.()}
+        '''
 
     
     '''    Funções    '''
         
-    def func1(self):
-        return "erro 1: "+ self.msg
+    def objectNotAttributeFunc(self):
+        try:
+            obj = self.msg.split("'")
+            return """O objeto do tipo '"""+obj[1]+"""' não tem nenhum atributo com o nome '"""+obj[3]+"""', verifique se digitou corretamente o nome do atributo ou o objeto."""
+        except:
+            return ""
 
 
-    def func2(self):
-        return "erro 2"
-    
+    def typeObjectFunc(self):
+        try:
+            obj = self.msg.split("'")
+            return """O tipo do objeto '"""+obj[1]+"""' não tem nenhum atributo de nome '"""+obj[3]+"""', verifique se o nome do atributo foi digitado corretamente."""
+        except:
+            return ""
+
+
+    '''
+    def (self):
+        return """ """
+
+
+    def (self):
+        return """ """
+
+    '''
+
 
 
     '''    Criação do dicionário    '''
     
     def getErros(self):
-        return {self.id:[self.erro1, self.erro2]}
+        return {self.id:[self.objectNotAttribute, self.typeObject]}
+
 
     

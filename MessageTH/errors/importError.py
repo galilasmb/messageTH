@@ -4,29 +4,46 @@ class ImportE(object):
 
     msg = ""
     id = "ImportError"
-    erro1 = {}
-    erro2 = {}
+    noModuleNamed = {}
+    cannotImport = {}
 
     def __init__(self, msg):
         self.msg = msg
-        self.erro1 = {"erro att 1":self.func1()}
-        self.erro2 = {"erro att 2":self.metodo2()}
+        self.noModuleNamed = {"No module named":self.noModuleNamedFunc()}
+        self.cannotImport = {"cannot import name":self.cannotImportFunc()}
+        '''    
+        self. = {"":self.()}
+        self. = {"":self.()}
+        '''
 
     
     '''    Funções    '''
         
-    def func1(self):
-        return "erro 1: "+ self.msg
+    def noModuleNamedFunc(self):
+        try:
+            return """Ocorreu um erro ao importar o módulo, pois não foi encontrado nenhum módulo com o nome '"""+self.msg.split("'")[1]+"""', verifique se digitou corretamente ou se realmente existe."""
+        except:
+            return ""
 
 
-    def func2(self):
-        return "erro 2"
-    
+    def cannotImportFunc(self):
+        try:
+            return """Não foi possível importar a biblioteca de nome '"""+self.msg.split("'")[1]+"""'. Verifique se digitou corretamente, se ela realmente existe ou se não é necessário algum arquivo de configuração."""
+        except:
+            return ""
+
+
+    '''
+    def (self):
+        return """ """
+
+    '''
+
 
 
     '''    Criação do dicionário    '''
     
     def getErros(self):
-        return {self.id:[self.erro1, self.erro2]}
+        return {self.id:[self.noModuleNamed, self.cannotImport]}
 
     

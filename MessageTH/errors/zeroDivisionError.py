@@ -4,29 +4,53 @@ class ZeroDivisionE(object):
 
     msg = ""
     id = "ZeroDivisionError"
-    erro1 = {}
-    erro2 = {}
+    divisionByZero = {}
+    moduloByZero = {}
+    floatModulo = {}
+    floatDivmod = {}
 
     def __init__(self, msg):
         self.msg = msg
-        self.erro1 = {"erro att 1":self.func1()}
-        self.erro2 = {"erro att 2":self.metodo2()}
+        self.divisionByZero = {"division by zero":self.divisionByZeroFunc()}
+        self.moduloByZero = {"division or modulo by zero":self.moduloByZeroFunc()}
+        self.floatModulo = {"float modulo":self.floatModuloFunc()}
+        self.floatDivmod = {"float divmod()":self.floatDivmodFunc()}
+        
+        '''    
+        self. = {"":self.()}
+        '''
 
     
     '''    Funções    '''
         
-    def func1(self):
-        return "erro 1: "+ self.msg
+    def divisionByZeroFunc(self):
+        return """Não é possível realizar divisão por zero, verifique se isso ocorre em seu código."""
 
 
-    def func2(self):
-        return "erro 2"
-    
+    def moduloByZeroFunc(self):
+        return """Não é possível realizar divisão ou módulo por zero, verifique se isto ocorre em seu código."""
+
+
+    def floatModuloFunc(self):
+        return """Não é possível realizar divisão ou módulo por zero. Somente é possível calcular o módulo entre números inteiros. Verifique se isto ocorre em seu código."""
+
+
+    def floatDivmodFunc(self):
+        return """Não é possível realizar divisão ou módulo por zero. Somente é possível calcular o módulo entre números inteiros. Verifique se isto ocorre em seu código."""
+
+
+    '''
+    def (self):
+        return """ """
+
+    '''
+
 
 
     '''    Criação do dicionário    '''
     
     def getErros(self):
-        return {self.id:[self.erro1, self.erro2]}
+        return {self.id:[self.divisionByZero, self.moduloByZero, self.floatModulo, self.floatDivmod]}
+
 
     

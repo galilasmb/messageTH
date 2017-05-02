@@ -4,29 +4,45 @@ class TabE(object):
 
     msg = ""
     id = "TabError"
-    erro1 = {}
-    erro2 = {}
-
+    inconsistentTabs = {}
+    missingParentheses = {}
+    
     def __init__(self, msg):
         self.msg = msg
-        self.erro1 = {"erro att 1":self.func1()}
-        self.erro2 = {"erro att 2":self.metodo2()}
+        self.inconsistentTabs = {"inconsistent use of tabs":self.inconsistentTabsFunc()}
+        self.missingParentheses = {"Missing parentheses in call to":self.missingParenthesesFunc()}
+
+        '''    
+        self. = {"":self.()}
+        '''
 
     
     '''    Funções    '''
         
-    def func1(self):
-        return "erro 1: "+ self.msg
+    def inconsistentTabsFunc(self):
+        return """O uso de tabs e espaços estão inconsistentes, verifique seu uso e sua quantidade."""
 
 
-    def func2(self):
-        return "erro 2"
-    
+    def missingParenthesesFunc(self):
+        return """É obrigatório o uso de parênteses a partir da versão 3.0 do Python, insira-os no comando 'print' para solucionar o problema."""
+
+
+    '''
+    def (self):
+        return """ """
+
+
+    def (self):
+        return """ """
+
+    '''
+
 
 
     '''    Criação do dicionário    '''
     
     def getErros(self):
-        return {self.id:[self.erro1, self.erro2]}
+        return {self.id:[self.inconsistentTabs, self.missingParentheses]}
+
 
     

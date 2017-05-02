@@ -4,29 +4,38 @@ class IOE(object):
 
     msg = ""
     id = "IOError"
-    erro1 = {}
-    erro2 = {}
+    permissionDdenied = {}
 
     def __init__(self, msg):
         self.msg = msg
-        self.erro1 = {"erro att 1":self.func1()}
-        self.erro2 = {"erro att 2":self.metodo2()}
+        self.permissionDdenied = {"Permission denied":self.permissionDdeniedFunc()}
+
+        '''    
+        self. = {"":self.()}
+        '''
 
     
     '''    Funções    '''
         
-    def func1(self):
-        return "erro 1: "+ self.msg
+    def permissionDdeniedFunc(self):
+        try:
+            path = self.msg.split(":")[1]
+            return """Não é permitido abrir o diretório no caminho: """+path.rstrip()+""", verifique-o. Tente colocar duas barras ou modificar o caminho, por exemplo: caminho = "..\\\Pasta\\\Pasta\\\Arquivo.txt"."""
+        except:
+            return ""
 
+    '''
+    def (self):
+        return """ """
 
-    def func2(self):
-        return "erro 2"
-    
+    '''
+
 
 
     '''    Criação do dicionário    '''
     
     def getErros(self):
-        return {self.id:[self.erro1, self.erro2]}
+        return {self.id:[self.permissionDdenied]}
+
 
     
