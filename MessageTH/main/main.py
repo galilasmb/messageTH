@@ -1,5 +1,11 @@
 # -*- coding: utf-8 -*-
 
+
+'''
+
+Por Galileu Santos
+
+'''
 import re
 from errors.nameError import NameE
 from errors.syntaxError import SyntaxE
