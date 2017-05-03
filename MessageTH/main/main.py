@@ -3,7 +3,7 @@
 
 '''
 
-Por Galileu Santos
+Por Galileu Santos - Universidade Federal de Sergipe
 
 '''
 import re
