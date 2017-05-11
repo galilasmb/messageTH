@@ -1,11 +1,5 @@
 # -*- coding: utf-8 -*-
 
-
-'''
-
-Por Galileu Santos - Universidade Federal de Sergipe
-
-'''
 import re
 from errors.nameError import NameE
 from errors.syntaxError import SyntaxE
@@ -29,10 +23,6 @@ from errors.calendarIllegalMonthError import IllegalMonthE
 from errors.unicodeEncodeError import UnicodeEncodeE
 from errors.IOError import IOE
 
-'''
-from errors.attributeError import AttributeE
-from errors.indentationError import IndentationE
-'''
 
 class Main(object):
     type = ""
@@ -94,7 +84,7 @@ class Main(object):
                         foundMsg = True
                         break
                         #continue#encerra a busca pela cadeira
-            if not foundMsg: 
+            if not foundMsg:
                 print "Erro não encontrado!"
         else:
             print "Tipo de erro não encontrado!"
@@ -161,6 +151,7 @@ else:
         numberLine = ""
         try:
             l = linha.split(",")[1]
+            
             if "line" in l:
                 for char in l:
                     if char.isdigit():
@@ -177,4 +168,3 @@ else:
             iniciar.chainResponsability()
         except:
             print "Mensagem de erro fora do padrão!"
-        

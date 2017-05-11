@@ -367,7 +367,7 @@ class TypeE(object):
             func = name[1]
             X = name[5]
             Y = name[7].replace("(", "")
-            return """A função """+func+""" possui no máximo """+X+""" argumentos e foram passados """+Y+"""."""
+            return """A função """+func+""" possui no máximo """+X+(" argumento e " if X=="1" else " argumentos e ")+("foi passado " if Y=="1" else "foram passados ")+Y+"""."""
         except:
             return ""
 
