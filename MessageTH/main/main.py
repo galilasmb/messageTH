@@ -22,6 +22,10 @@ from errors.unicodeDecodeError import UnicodeDecodeE
 from errors.calendarIllegalMonthError import IllegalMonthE
 from errors.unicodeEncodeError import UnicodeEncodeE
 from errors.IOError import IOE
+import bottle
+import urllib
+from wsgiref import simple_server
+import html
 
 
 class Main(object):
@@ -35,7 +39,7 @@ class Main(object):
         self.msg = msg
         self.line = line
         self.code = code
-
+        
     def chainResponsability(self):   
               
         ''' Cadeia de Busca '''
@@ -57,7 +61,7 @@ class Main(object):
             Caso case, é passado a lista de erros deste tipo
         
         '''
-        
+        retorno = []
         for i in chain:
             if self.type in i:
                 listError = i[self.type]
@@ -77,94 +81,110 @@ class Main(object):
             for l in listError:
                 for i in l.keys():
                     if i in self.msg:
-                        print "Erro na linha "+self.line
-                        if not self.code == "": print "No trecho de código:"
-                        print self.code,
-                        print "Descrição: "+l[i]
+                        retorno.append("\nErro na linha "+self.line+"\n")
+                        if not self.code == "": retorno.append("No trecho de código:\n")
+                        retorno.append(self.code)
+                        retorno.append("Descrição: "+l[i]+"\n")
                         foundMsg = True
                         break
                         #continue#encerra a busca pela cadeira
             if not foundMsg:
-                print "Erro não encontrado!"
+                retorno.append("Erro não encontrado!")
         else:
-            print "Tipo de erro não encontrado!"
+            retorno.append("Tipo de erro não encontrado!")
+        
+        return ''.join(retorno)
 
+b = bottle.Bottle()
+   
+def execute():
+    ''' Pegando o parâmetro da URL '''
+    
+    '''query_string = bottle.request.query_string
+    
+    return ((urllib.unquote(query_string)))'''
 
-'''
-    Carregando a mensagem de erro
-'''        
+    
+    '''
+        Carregando a mensagem de erro
+    '''        
+    filename = "..\\file\\baseErros.txt"
+    list_begin = []
+    
+    ''' Separando a mensagem em linhas e identificando a linha que contém a string Error '''
+    with open(filename) as f:
+        for line in f:
+            list_begin.append(line)
+    
+    matriz_errors = []
+    linha = []
+    for i in list_begin:
+        linha.append(i)
+        if "Error" in i and not "sys.excepthook" in i and not "raise" in i:
+            matriz_errors.append(linha)
+            linha = []
             
-filename = "..\\file\\baseErros.txt"
-list_begin = []
-encontrou = False
-''' Separando a mensagem em linhas e identificando a linha que contém a string Error '''
-with open(filename) as f:
-    for line in f:
-        list_begin.append(line)
-
-matriz_errors = []
-linha = []
-for i in list_begin:
-    linha.append(i)
-    if "Error" in i and not "sys.excepthook" in i and not "raise" in i:
-        matriz_errors.append(linha)
-        linha = []
-        
-if not matriz_errors:
-    print "Mensagem de erro fora do padrão!"
-else:
-    for list_erros in matriz_errors:
-        list_new = []
-        
-        ''' Separando o tipo do erro e sua mensagem '''
-        error = list_erros[::-1][0]
-        classError = error.split(":")
-        list_new.append(classError[0])
-        list_new.append(re.sub(str(classError[0]+":"), "", error))
-        
-        ''' Pegando o código fonte '''
-        
-        entrou = False
-        cod = []
-        try:
-            for i in list_erros[::-1]:
-                if "File \"" not in i and not entrou:
-                    cod.append(i)
-                else:
-                    entrou = True
-            str_code = ''.join(cod[1:][::-1])  
-        
-        except:
-            cod = ""
-        
-        
-        ''' Pegando a linha que ocorreu o erro'''
-        linha = ""
-        for f in list_erros:
+    if not matriz_errors:
+        return "Mensagem de erro fora do padrão!"
+    else:
+        for list_erros in matriz_errors:
+            list_new = []
+            
+            ''' Separando o tipo do erro e sua mensagem '''
+            error = list_erros[::-1][0]
+            classError = error.split(":")
+            list_new.append(classError[0])
+            list_new.append(re.sub(str(classError[0]+":"), "", error))
+            
+            ''' Pegando o código fonte '''
+            
+            entrou = False
+            cod = []
             try:
-                if "File \"" in f:            
-                    linha = f            
+                for i in list_erros[::-1]:
+                    if "File \"" not in i and not entrou:
+                        cod.append(i)
+                    else:
+                        entrou = True
+                str_code = ''.join(cod[1:][::-1])  
+            
             except:
-                continue
+                cod = ""
+            
+            
+            ''' Pegando a linha que ocorreu o erro'''
+            linha = ""
+            for f in list_erros:
+                try:
+                    if "File \"" in f:            
+                        linha = f            
+                except:
+                    continue
+    
+            ''' Identificando o número da linha que ocorreu o erro '''
+            numberLine = ""
+            try:
+                l = linha.split(",")[1]
+                
+                if "line" in l:
+                    for char in l:
+                        if char.isdigit():
+                            numberLine+=char
+                else:
+                    numberLine = "X"
+                ''' Executando a chamada da cadeia com o tipo do erro e sua mensagem'''
+                
+                '''print numberLine
+                print str_code
+                print list_new[0]+":"+list_new[1]'''
+                
+                iniciar = Main(list_new[0], list_new[1], numberLine, str_code)
+                return iniciar.chainResponsability().replace("\n", "</br>")
+            except:
+                return "Mensagem de erro fora do padrão!"
+    
 
-        ''' Identificando o número da linha que ocorreu o erro '''
-        numberLine = ""
-        try:
-            l = linha.split(",")[1]
-            
-            if "line" in l:
-                for char in l:
-                    if char.isdigit():
-                        numberLine+=char
-            else:
-                numberLine = "X"
-            ''' Executando a chamada da cadeia com o tipo do erro e sua mensagem'''
-            
-            '''print numberLine
-            print str_code
-            print list_new[0]+":"+list_new[1]'''
-            iniciar = Main(list_new[0], list_new[1], numberLine, str_code)
-            
-            iniciar.chainResponsability()
-        except:
-            print "Mensagem de erro fora do padrão!"
+b.route('/', ['GET'], execute)
+sv = simple_server.make_server('', 8080, b)
+sv.serve_forever()
+
