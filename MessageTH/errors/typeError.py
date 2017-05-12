@@ -367,7 +367,7 @@ class TypeE(object):
             func = name[1]
             X = name[5]
             Y = name[7].replace("(", "")
-            return """A função """+func+""" possui no máximo """+X+(" argumento e " if X=="1" else " argumentos e ")+("foi passado " if Y=="1" else "foram passados ")+Y+"""."""
+            return """A função """+func+""" possui no máximo """+X+(" argumento e " if X=="1" else " argumentos e ")+("foi passado " if Y=="1" else "foram passados ")+Y+""". Retire os argumentos em excesso para corrigir o erro."""
         except:
             return ""
 
@@ -377,7 +377,7 @@ class TypeE(object):
             name = self.msg.split(" ")
             func = name[1]
             args = name[5].replace("(", "")
-            return """A função """+func+""" não precisa de argumentos e """+("foi passado " if args=="1" else "foram passados ")+args+"""."""
+            return """A função """+func+""" não precisa de argumentos e """+("foi passado " if args=="1" else "foram passados ")+args+""". Remova os argumentos para corrigir o erro."""
         except:
             return ""
 
