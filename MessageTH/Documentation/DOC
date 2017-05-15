@@ -1,3 +1,15 @@
+
+Para executar o código, navegue até o pacote errors e execute o comando: python main.py
+O arquivo main é o responsável pela execução de todo o projeto.
+O servidor estará rodando em: http://localhost:8080/
+Utilize o programa PostMan ou execute a requisição manualmente através do método POST, passando como parâmetro 
+o erro de programação. Lembrando que o nome do parâmetro é errorMsg.
+
+O server está configurado localmente, para personalizar, abra o arquivo main do pacote erros.
+Configure a última linha deste arquivo conforme seu endereço de servidor.
+if __name__ == '__main__':    
+    run(host='localhost', port=8080) # Modificar esta linha
+
               
 				Utilizando o padrão de projetos Chain of Responsability
         
