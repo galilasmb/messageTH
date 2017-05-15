@@ -222,7 +222,7 @@ class TypeE(object):
     
     def objectToImplicitlyFunc(self):
         try:
-            return """Não é possível converter o tipo """+self.msg.split("'")[2]+""" implicitamente para o tipo str, ou seja, por mais que seja compreensível sua conversão, não é possível."""
+            return """Não é possível converter o tipo """+self.msg.split("'")[2]+""" implicitamente para o tipo str, ou seja, por mais que seja compreensível sua conversão."""
         except:
             return ""
     
@@ -271,7 +271,7 @@ class TypeE(object):
     def floatArgumentRequiredFunc(self):
         try:
             typ = self.msg.split(",")[1].replace(" not ", "")
-            return """É necessário que o argumento seja do tipo  float, não do tipo """+typ
+            return """É necessário que o argumento seja do tipo float, não do tipo """+typ
         except:
             return ""
 
@@ -406,7 +406,7 @@ class TypeE(object):
 
     
     def nonFormatFunc(self):
-        return """Não é possível formatar o objeto, verifique a declaração do comando format e seus parâmetros."""    
+        return """Não é possível formatar o objeto, verifique a declaração do comando format e seus parâmetros, por exemplo: format(valor, especificação) ou "string".format(especificação)."""    
 
     
     def objectButReceivedFunc(self):
@@ -496,7 +496,7 @@ class TypeE(object):
     def keywordArgumentsFunc(self):
         try:
             func = self.msg.split(" ")[1]
-            return """Os argumentos passados para a função """+func+""" não podem ser palavras chave. Verifique os argumentos e seus tipos."""
+            return """Os argumentos passados para a função """+func+""" não podem ser palavras chaves. Verifique os argumentos e seus tipos."""
         except:
             return ""
 

@@ -20,7 +20,7 @@ class NameE(object):
             for i in list_new:
                 if "'" in i:
                     var.append(i)
-            return """Foi feito o uso de uma variável que não foi definida ou um comando que foi escrito de forma errada. Verifique a palavra """+var[0]
+            return """Foi feito o uso de uma variável que não foi definida ou um comando que foi escrito de forma errada. Verifique a palavra """+var[0]+"."
         except:
             return ""
 

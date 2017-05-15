@@ -108,7 +108,7 @@ class ValueE(object):
 
     
     def emptySequenceFunc(self):
-        return """Os argumentos da função """+("max()" if "max" in self.msg else "min()")+""" não está no formato correto, é necessário pelo menos dois argumentos."""
+        return """Os argumentos da função """+("max()" if "max" in self.msg else "min()")+""" não estão no formato correto, são necessários pelo menos dois argumentos."""
 
 
     def substringNotFunc(self):
@@ -116,8 +116,8 @@ class ValueE(object):
 
 
     def listRemoveFunc(self):
-        return """O parâmetro do comando remove() não está na lista, tente verificar seu tipo e modificá-lo. Pois não é possível remover elementos que não estão na lista."""
-
+        return """O parâmetro do comando remove() não está na lista, tente verificar seu tipo e modificá-lo, pois não é possível remover elementos que não estão na lista."""
+                  
     
     def tooManyValueFunc(self):
         return """Não é possível descompactar ou atribuir uma tupla que possui mais valores que as variáveis de destino. Verifique a quantidade de variáveis."""
@@ -139,7 +139,7 @@ class ValueE(object):
             l = self.msg.split("'")
             cod = l[1]
             ty = l[3]
-            return """A formatação do código """+cod+""" é desconhecida para o tipo do objeto """+ty+""". Verifique se seus tipos."""
+            return """A formatação do código """+cod+""" é desconhecida para o tipo do objeto """+ty+""". Verifique seus tipos."""
         except:
             return ""
 
@@ -185,15 +185,15 @@ class ValueE(object):
 
 
     def invalidFormatFunc(self):
-        return """O formato especificado é inválido, verifique os parâmetros do comando format()."""
+        return """O formato especificado é inválido, verifique os parâmetros do comando format(), por exemplo: format(valor, especificação) ou "string".format(especificação)."""
 
 
     def formatPrecisionFunc(self):
-        return """A especificação do comando 'format' está faltando o parâmetro precisão. Insira a precisão de formatação para corrigir o erro."""
+        return """A especificação do comando 'format' está faltando o parâmetro precisão. Insira a precisão de formatação para corrigir o erro, por exemplo: format(valor, especificação) ou "string".format(especificação)."""
     
     
     def attributeFormatStringFunc(self):
-        return """Foi passado um atributo vazio para formatação de uma string. Verifique os atributos do comando 'format'."""
+        return """Foi passado um atributo vazio para formatação de uma string. Verifique os atributos do comando 'format', por exemplo: format(valor, especificação) ou "string".format(especificação)."""
 
 
     '''

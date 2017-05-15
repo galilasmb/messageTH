@@ -23,7 +23,7 @@ class IndexE(object):
 
 
     def popEmptyListFunc(self):
-        return """A lista está vazia, por isso não é possível utilizar o comando pop(). Só é possível utilizar se a lista tiver tamanho maior ou igual a um."""
+        return """A lista está vazia, por isso não é possível utilizar o comando pop(). Só é possível utilizar se a lista possuir tamanho maior ou igual a um."""
 
 
     '''

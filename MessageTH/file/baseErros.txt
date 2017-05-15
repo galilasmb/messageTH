@@ -1,4 +1,0 @@
-Traceback (most recent call last):
-  File "/Área.py", line 1, in <module>
-    a, b, c = float ( raw_input (), (), ())
-TypeError: float() takes at most 2 argument (3 given)

@@ -21,14 +21,14 @@ class ImportE(object):
         
     def noModuleNamedFunc(self):
         try:
-            return """Ocorreu um erro ao importar o módulo, pois não foi encontrado nenhum módulo com o nome '"""+self.msg.split("'")[1]+"""', verifique se digitou corretamente ou se realmente existe."""
+            return """Ocorreu um erro ao importar o módulo, pois não foi encontrado nenhum módulo com o nome '"""+self.msg.split("'")[1]+"""', verifique se digitou corretamente, se realmente existe ou se este módulo requer instalação."""
         except:
             return ""
 
 
     def cannotImportFunc(self):
         try:
-            return """Não foi possível importar a biblioteca de nome '"""+self.msg.split("'")[1]+"""'. Verifique se digitou corretamente, se ela realmente existe ou se não é necessário algum arquivo de configuração."""
+            return """Não foi possível importar a biblioteca de nome '"""+self.msg.split("'")[1]+"""'. Verifique se digitou corretamente, se ela realmente existe ou se não é necessário algum arquivo de configuração ou instalação."""
         except:
             return ""
 

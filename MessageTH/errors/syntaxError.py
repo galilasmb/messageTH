@@ -86,8 +86,7 @@ class SyntaxE(object):
     
    
     def invalidTokenFunc(self):
-        return """Foi feito o uso de forma errada de do token. Geralmente o erro acontece ao usar a vírgula para representar números decimais ou usar o 0 antes de algum número, exemplo, respectivamente: 0,06 e 01."""
-    
+        return """Foi feito o uso de forma errada do token. Geralmente o erro acontece ao usar a vírgula para representar números decimais ou usar o 0 antes de algum número, exemplo, respectivamente: 0,06 e 01."""
    
     def returnOutsideFunc(self):
         return """Foi feito o uso do comando return fora de uma função, retire-o ou verifique sua identação."""
@@ -102,8 +101,7 @@ class SyntaxE(object):
     
     
     def cantLiteralFunc(self):
-        return """Foi feita a tentativa de atribuição a uma literal, isso não é possível, o comando de atribuição deve ser feito usando uma variável."""
-    
+        return """Foi feita a tentativa de atribuição a uma literal, isso não é possível, o comando de atribuição deve ser feito usando uma variável, por exemplo: variavel = expressão."""
    
     def cantOperatorFunc(self):
         return """Foi feita a tentativa de atribuição a um operador ou uma expressão de forma equivocada. Expressões devem ficar do lado direito do comando de atribuição."""

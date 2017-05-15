@@ -1,32 +1,28 @@
 # -*- coding: utf-8 -*-
 
 import re
-from errors.nameError import NameE
-from errors.syntaxError import SyntaxE
-from errors.systemError import SystemE
-from errors.valueError import ValueE
-from errors.typeError import TypeE
-from errors.EOFError import EOFE
-from errors.indentationError import IndentationE
-from errors.indexError import IndexE
-from errors.attributeError import AttributeE
-from errors.keyError import KeyE
-from errors.unboundLocalError import UnboundLocalE
-from errors.fileNotFoundError import FileNotFoundE
-from errors.zeroDivisionError import ZeroDivisionE
-from errors.tabError import TabE
-from errors.importError import ImportE
-from errors.permissionError import PermissionE
-from errors.overflowError import OverflowE
-from errors.unicodeDecodeError import UnicodeDecodeE
-from errors.calendarIllegalMonthError import IllegalMonthE
-from errors.unicodeEncodeError import UnicodeEncodeE
-from errors.IOError import IOE
-import bottle
-import urllib
-from wsgiref import simple_server
-import html
-
+from nameError import NameE
+from syntaxError import SyntaxE
+from systemError import SystemE
+from valueError import ValueE
+from typeError import TypeE
+from EOFError import EOFE
+from indentationError import IndentationE
+from indexError import IndexE
+from attributeError import AttributeE
+from keyError import KeyE
+from unboundLocalError import UnboundLocalE
+from fileNotFoundError import FileNotFoundE
+from zeroDivisionError import ZeroDivisionE
+from tabError import TabE
+from importError import ImportE
+from permissionError import PermissionE
+from overflowError import OverflowE
+from unicodeDecodeError import UnicodeDecodeE
+from calendarIllegalMonthError import IllegalMonthE
+from unicodeEncodeError import UnicodeEncodeE
+from IOError import IOE
+from bottle import run, post, request
 
 class Main(object):
     type = ""
@@ -83,39 +79,35 @@ class Main(object):
                     if i in self.msg:
                         retorno.append("\nErro na linha "+self.line+"\n")
                         if not self.code == "": retorno.append("No trecho de código:\n")
-                        retorno.append(self.code)
+                        retorno.append(self.code+"\n")
                         retorno.append("Descrição: "+l[i]+"\n")
                         foundMsg = True
                         break
                         #continue#encerra a busca pela cadeira
             if not foundMsg:
-                retorno.append("Erro não encontrado!")
+                retorno.append("400")
+                #retorno.append("Erro não encontrado!")
         else:
-            retorno.append("Tipo de erro não encontrado!")
+            retorno.append("400")
+            #retorno.append("Tipo de erro não encontrado!")
         
         return ''.join(retorno)
 
-b = bottle.Bottle()
    
-def execute():
-    ''' Pegando o parâmetro da URL '''
-    
-    '''query_string = bottle.request.query_string
-    
-    return ((urllib.unquote(query_string)))'''
-
+def execute(errorMsg):
     
     '''
         Carregando a mensagem de erro
     '''        
-    filename = "..\\file\\baseErros.txt"
     list_begin = []
     
-    ''' Separando a mensagem em linhas e identificando a linha que contém a string Error '''
-    with open(filename) as f:
-        for line in f:
-            list_begin.append(line)
+    ''' Separando a mensagem em linhas e identificando a linha que contém a string Error
+    filename = "..\\file\\baseErros.txt"
+    with open(filename) as f:'''
     
+    for line in errorMsg.split("\n"):
+        list_begin.append(line)
+
     matriz_errors = []
     linha = []
     for i in list_begin:
@@ -123,10 +115,12 @@ def execute():
         if "Error" in i and not "sys.excepthook" in i and not "raise" in i:
             matriz_errors.append(linha)
             linha = []
-            
+    finalMsg = ""    
     if not matriz_errors:
+        #return "400"
         return "Mensagem de erro fora do padrão!"
     else:
+        
         for list_erros in matriz_errors:
             list_new = []
             
@@ -143,7 +137,7 @@ def execute():
             try:
                 for i in list_erros[::-1]:
                     if "File \"" not in i and not entrou:
-                        cod.append(i)
+                        cod.append(i+"\n")
                     else:
                         entrou = True
                 str_code = ''.join(cod[1:][::-1])  
@@ -179,12 +173,18 @@ def execute():
                 print list_new[0]+":"+list_new[1]'''
                 
                 iniciar = Main(list_new[0], list_new[1], numberLine, str_code)
-                return iniciar.chainResponsability().replace("\n", "</br>")
+                finalMsg += iniciar.chainResponsability()
             except:
+                #return "400"
                 return "Mensagem de erro fora do padrão!"
-    
+        return finalMsg
 
-b.route('/', ['GET'], execute)
-sv = simple_server.make_server('', 8080, b)
-sv.serve_forever()
+@post('/')
+def postMsg():
+    errorMsg = request.forms.get('errorMsg')
+    return execute(errorMsg)
+
+if __name__ == '__main__':    
+    run(host='localhost', port=8080)
+
 
