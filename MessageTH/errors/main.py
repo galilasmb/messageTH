@@ -117,8 +117,8 @@ def execute(errorMsg):
             linha = []
     finalMsg = ""    
     if not matriz_errors:
-        #return "400"
-        return "Mensagem de erro fora do padrão!"
+        return "400"
+        #return "Mensagem de erro fora do padrão!"
     else:
         
         for list_erros in matriz_errors:
@@ -175,8 +175,8 @@ def execute(errorMsg):
                 iniciar = Main(list_new[0], list_new[1], numberLine, str_code)
                 finalMsg += iniciar.chainResponsability()
             except:
-                #return "400"
-                return "Mensagem de erro fora do padrão!"
+                return "400"
+                #return "Mensagem de erro fora do padrão!"
         return finalMsg
 
 @post('/')
