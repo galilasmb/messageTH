@@ -104,7 +104,7 @@ def execute(errorMsg):
     ''' Separando a mensagem em linhas e identificando a linha que contém a string Error
     filename = "..\\file\\baseErros.txt"
     with open(filename) as f:'''
-    print errorMsg
+    
     try:
         for line in errorMsg.split("\n"):
             list_begin.append(line)
