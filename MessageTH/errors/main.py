@@ -104,10 +104,13 @@ def execute(errorMsg):
     ''' Separando a mensagem em linhas e identificando a linha que contém a string Error
     filename = "..\\file\\baseErros.txt"
     with open(filename) as f:'''
-    
-    for line in errorMsg.split("\n"):
-        list_begin.append(line)
-
+    print errorMsg
+    try:
+        for line in errorMsg.split("\n"):
+            list_begin.append(line)
+    except:
+        return "Mensagem de erro fora do padrão!"
+        
     matriz_errors = []
     linha = []
     for i in list_begin:
@@ -117,8 +120,8 @@ def execute(errorMsg):
             linha = []
     finalMsg = ""    
     if not matriz_errors:
-        return "400"
-        #return "Mensagem de erro fora do padrão!"
+        #return "400"
+        return "Mensagem de erro fora do padrão!"
     else:
         
         for list_erros in matriz_errors:
@@ -175,8 +178,8 @@ def execute(errorMsg):
                 iniciar = Main(list_new[0], list_new[1], numberLine, str_code)
                 finalMsg += iniciar.chainResponsability()
             except:
-                return "400"
-                #return "Mensagem de erro fora do padrão!"
+                #return "400"
+                return "Mensagem de erro fora do padrão!"
         return finalMsg
 
 @post('/')
