@@ -99,6 +99,7 @@ def execute(errorMsg):
     '''
         Carregando a mensagem de erro
     '''        
+    
     list_begin = []
     
     ''' Separando a mensagem em linhas e identificando a linha que contém a string Error
