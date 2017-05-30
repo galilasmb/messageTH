@@ -123,8 +123,7 @@ def execute(errorMsg):
     if not matriz_errors:
         #return "400"
         return "Mensagem de erro fora do padrão!"
-    else:
-        
+    else: 
         for list_erros in matriz_errors:
             list_new = []
             
