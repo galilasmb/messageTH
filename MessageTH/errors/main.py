@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import re
+import sys
 from nameError import NameE
 from syntaxError import SyntaxE
 from systemError import SystemE
@@ -71,7 +72,6 @@ class Main(object):
             Caso case, é chamado o método correspondente que transforma a mensagem de erro
             
         '''
-       
         
         if foundType:
             for l in listError:
@@ -85,11 +85,15 @@ class Main(object):
                         break
                         #continue#encerra a busca pela cadeira
             if not foundMsg:
-                retorno.append("400")
-                #retorno.append("Erro não encontrado!")
+                #retorno.append("400")
+                print self.msg
+                retorno.append("Erro não encontrado!")
+                
         else:
-            retorno.append("400")
-            #retorno.append("Tipo de erro não encontrado!")
+            #retorno.append("400")
+            print self.msg                
+            retorno.append("Tipo de erro não encontrado!")
+            
         
         return ''.join(retorno)
 
@@ -110,6 +114,7 @@ def execute(errorMsg):
         for line in errorMsg.split("\n"):
             list_begin.append(line)
     except:
+        print errorMsg+sys.exc_info()[0]
         return "Mensagem de erro fora do padrão!"
         
     matriz_errors = []
@@ -122,6 +127,7 @@ def execute(errorMsg):
     finalMsg = ""    
     if not matriz_errors:
         #return "400"
+        print errorMsg+sys.exc_info()[0]
         return "Mensagem de erro fora do padrão!"
     else: 
         for list_erros in matriz_errors:
@@ -179,15 +185,23 @@ def execute(errorMsg):
                 finalMsg += iniciar.chainResponsability()
             except:
                 #return "400"
+                print errorMsg+sys.exc_info()[0]
                 return "Mensagem de erro fora do padrão!"
         return finalMsg
 
+def checkMsg(msg):
+    return (True if "\n" in msg and msg is not None else False)
+        
 @post('/')
 def postMsg():
     errorMsg = request.forms.get('errorMsg')
-    return execute(errorMsg)
+    if checkMsg(errorMsg):
+        return execute(errorMsg)
+    else:
+        print errorMsg
+        return "Mensagem de erro fora do padrão!"
 
 if __name__ == '__main__':    
-    run(host='localhost', port=8080)
+    run(host='localhost', port=8080, debug=True)
 
 
