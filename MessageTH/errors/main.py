@@ -23,7 +23,7 @@ from unicodeDecodeError import UnicodeDecodeE
 from calendarIllegalMonthError import IllegalMonthE
 from unicodeEncodeError import UnicodeEncodeE
 from IOError import IOE
-from bottle import run, post, request
+from bottle import run, post, request, debug
 
 class Main(object):
     type = ""
@@ -202,6 +202,7 @@ def postMsg():
         return "Mensagem de erro fora do padrão!"
 
 if __name__ == '__main__':    
-    run(host='localhost', port=8080, debug=True)
+    debug(True)
+    run(host='localhost', port=8080, debug=True, reloader=True)
 
 
