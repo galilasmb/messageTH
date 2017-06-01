@@ -113,8 +113,8 @@ def execute(errorMsg):
     try:
         for line in errorMsg.split("\n"):
             list_begin.append(line)
-    except:
-        print errorMsg+sys.exc_info()[0]
+    except Exception as e:
+        print errorMsg, sys.exc_info()[0], e
         return "Mensagem de erro fora do padrão!"
         
     matriz_errors = []
@@ -127,7 +127,7 @@ def execute(errorMsg):
     finalMsg = ""    
     if not matriz_errors:
         #return "400"
-        print errorMsg+sys.exc_info()[0]
+        print errorMsg, sys.exc_info()[0]
         return "Mensagem de erro fora do padrão!"
     else: 
         for list_erros in matriz_errors:
@@ -183,9 +183,9 @@ def execute(errorMsg):
                 
                 iniciar = Main(list_new[0], list_new[1], numberLine, str_code)
                 finalMsg += iniciar.chainResponsability()
-            except:
+            except Exception as e:
                 #return "400"
-                print errorMsg+sys.exc_info()[0]
+                print errorMsg, sys.exc_info()[0], e
                 return "Mensagem de erro fora do padrão!"
         return finalMsg
 
@@ -194,13 +194,16 @@ def checkMsg(msg):
         
 @post('/')
 def postMsg():
-    errorMsg = request.forms.get('errorMsg')
-    if checkMsg(errorMsg):
-        return execute(errorMsg)
-    else:
-        print errorMsg
-        return "Mensagem de erro fora do padrão!"
-
+    try:
+        errorMsg = request.forms.get('Msg')
+        if checkMsg(errorMsg):
+            return execute(errorMsg)
+        else:
+            print errorMsg
+            return "Mensagem de erro fora do padrão!"
+    except Exception as e:
+        print errorMsg, sys.exc_info()[0], e
+        
 if __name__ == '__main__':    
     debug(True)
     run(host='localhost', port=8080, debug=True, reloader=True)
