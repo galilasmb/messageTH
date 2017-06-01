@@ -195,7 +195,7 @@ def checkMsg(msg):
 @post('/')
 def postMsg():
     try:
-        errorMsg = request.forms.get('Msg')
+        errorMsg = request.forms.get('errorMsg')
         if checkMsg(errorMsg):
             return execute(errorMsg)
         else:
