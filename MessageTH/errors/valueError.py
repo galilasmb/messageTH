@@ -61,7 +61,7 @@ class ValueE(object):
         self.invalidFormat = {"Invalid format specifier":self.invalidFormatFunc()}
         self.formatPrecision = {"Format specifier missing precision":self.formatPrecisionFunc()}
         self.attributeFormatString = {"attribute in format string":self.attributeFormatStringFunc()}
-        
+
         #self.var = {"chave":self.metodo()}
 
     

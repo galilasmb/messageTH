@@ -135,7 +135,7 @@ class TypeE(object):
         self.startswithFirstArg = {"startswith first arg must be":self.startswithFirstArgFunc()}
         self.mustStrNotInt = {"must be str, not int":self.mustStrNotIntFunc()}
         self.requiredArguments = {"required positional arguments":self.requiredArgumentsFunc()}
-        
+
         '''
         self. = {"":self.()}
         '''
@@ -182,7 +182,7 @@ class TypeE(object):
 
     
     def notAllArgsFunc(self):
-        return """Nem todos os argumentos foram convertidos durante a formatação. Verifique a formatação, os tipos das variáveis e argumentos."""    
+        return """Nem todos os argumentos foram convertidos durante a formatação. Verifique a formatação, o uso do caractere %, os tipos das variáveis e argumentos."""    
 
 
     

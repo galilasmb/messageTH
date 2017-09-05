@@ -9,7 +9,7 @@ class SystemE(object):
     def __init__(self, msg):
         self.msg = msg
         self.permissionError = {"E:Unable to read":self.permissionErrorFunc()}
-    
+
     
     '''    Funções    '''
         

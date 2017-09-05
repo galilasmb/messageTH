@@ -40,13 +40,15 @@ class Main(object):
     def chainResponsability(self):   
               
         ''' Cadeia de Busca '''
-        chain = [SyntaxE(self.msg).getErros(), SystemE(self.msg).getErros(), NameE(self.msg).getErros(),
-                 ValueE(self.msg).getErros(), TypeE(self.msg).getErros(), EOFE(self.msg).getErros(),
-                 IndentationE(self.msg).getErros(), IndexE(self.msg).getErros(), AttributeE(self.msg).getErros(),
-                 KeyE(self.msg).getErros(), UnboundLocalE(self.msg).getErros(), FileNotFoundE(self.msg).getErros(),
-                 ZeroDivisionE(self.msg).getErros(), TabE(self.msg).getErros(), ImportE(self.msg).getErros(),
-                 PermissionE(self.msg).getErros(), OverflowE(self.msg).getErros(), UnicodeDecodeE(self.msg).getErros(),
-                 IllegalMonthE(self.msg).getErros(), UnicodeEncodeE(self.msg).getErros(), IOE(self.msg).getErros()]
+
+        chain = ['SyntaxE(self.msg).getErros()', 'SystemE(self.msg).getErros()', 'NameE(self.msg).getErros()',
+                 'ValueE(self.msg).getErros()', 'TypeE(self.msg).getErros()', 'EOFE(self.msg).getErros()',
+                 'IndentationE(self.msg).getErros()', 'IndexE(self.msg).getErros()', 'AttributeE(self.msg).getErros()',
+                 'KeyE(self.msg).getErros()', 'UnboundLocalE(self.msg).getErros()', 'FileNotFoundE(self.msg).getErros()',
+                 'ZeroDivisionE(self.msg).getErros()', 'TabE(self.msg).getErros()', 'ImportE(self.msg).getErros()',
+                 'PermissionE(self.msg).getErros()', 'OverflowE(self.msg).getErros()', 'UnicodeDecodeE(self.msg).getErros()',
+                 'IllegalMonthE(self.msg).getErros()', 'UnicodeEncodeE(self.msg).getErros()', 'IOE(self.msg).getErros()']
+              
               
         foundType = False #Se encontrar a classe do tipo
         foundMsg = False #Se encontrar a mensagem de erro
@@ -59,7 +61,9 @@ class Main(object):
         
         '''
         retorno = []
+        
         for i in chain:
+            i = eval(i)
             if self.type in i:
                 listError = i[self.type]
                 foundType = True

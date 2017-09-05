@@ -11,6 +11,7 @@ class ImportE(object):
         self.msg = msg
         self.noModuleNamed = {"No module named":self.noModuleNamedFunc()}
         self.cannotImport = {"cannot import name":self.cannotImportFunc()}
+
         '''    
         self. = {"":self.()}
         self. = {"":self.()}

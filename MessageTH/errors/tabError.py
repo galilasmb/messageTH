@@ -11,7 +11,7 @@ class TabE(object):
         self.msg = msg
         self.inconsistentTabs = {"inconsistent use of tabs":self.inconsistentTabsFunc()}
         self.missingParentheses = {"Missing parentheses in call to":self.missingParenthesesFunc()}
-
+        
         '''    
         self. = {"":self.()}
         '''

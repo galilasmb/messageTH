@@ -11,7 +11,6 @@ class AttributeE(object):
         self.msg = msg
         self.objectNotAttribute = {"object has no attribute":self.objectNotAttributeFunc()}
         self.typeObject = {"type object":self.typeObjectFunc()}
-
         '''    
         self. = {"":self.()}
         '''

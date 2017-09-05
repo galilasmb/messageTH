@@ -11,7 +11,6 @@ class EOFE(object):
         self.EOFReadingLine = {"EOF when reading a line":self.EOFReadingLineFunc()}
  
         #self.erro2 = {"erro att 2":self.metodo2()}
-
     
     '''    Funções    '''
         

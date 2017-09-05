@@ -70,7 +70,7 @@ class SyntaxE(object):
 
    
     def unexpectedEOFFunc(self):
-        return "Foram utilizados caracteres que não seguem o padrão da linguagem, assim ocorreu o erro de final de arquivo inesperado. Verifique os caracteres utilizados."
+        return "Foram utilizados caracteres que não seguem o padrão da linguagem, assim ocorreu o erro de final de arquivo inesperado ao mostrar a saída. Verifique os caracteres utilizados ou a quantidade de parênteses ou aspas."
     
    
     def EOLwhileSFunc(self):
